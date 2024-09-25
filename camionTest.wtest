@@ -1,9 +1,33 @@
+import cosas.*
 import camion.*
 
 describe "group of test for camion" {
 
-  test "first test" {
-    assert.that(true)
+  method initialize() {
+    bumblebee.transformar(robot)
+    camion.cargar(bumblebee) //2
+    arenaAGranel.peso(150)
+    camion.cargar(arenaAGranel) // 1
+    bateriaAntiaerea.cargarMisiles()
+    camion.cargar(bateriaAntiaerea) //2
+    paqueteDeLadrillos.cantidadLadrillos(80)
+    embalajeDeSeguridad.cosa(paqueteDeLadrillos)
+    camion.cargar(embalajeDeSeguridad) // 2
+  }
+  test "verificar que ninguna carga es de peso impar" { //cargas impares
+    assert.that(not camion.cargasImpares())
+  }
+
+  test "verificar que el camion no esta excedido del limite" { // estaExcedido
+    assert.that(not camion.estaExcedido())
+  }
+
+  test "verificar que la carga mas pesada es bumbelbee" { //cargaMasPesada
+    assert.equals(bumblebee, camion.cargaMasPesada())
+  }
+
+  test "verificar que los bultos del camion sean 7" { // bultosTotales
+    assert.equals(7, camion.bultosTotales())
   }
 
 }
